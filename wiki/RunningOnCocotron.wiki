@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Starting from r31, sqlitepersistentobjects has support for [http://www.coctron.org Coctron] runtime. The only critical issue is that there are no ways for properties introspection in Coctron, so you have to add more magic to your models to make them work.
+Starting from r31, sqlitepersistentobjects has support for [http://www.cocotron.org Cocotron] runtime. The only critical issue is that there are no ways for properties introspection in Cocotron, so you have to add more magic to your models to make them work.
 
 = Details =
 
