@@ -1,4 +1,4 @@
-#summary You know, one of FAQ pages
+#summary You know, one of those FAQ pages
 
 = Introduction =
 
