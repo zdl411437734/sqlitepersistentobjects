@@ -1,0 +1,9 @@
+#summary You know, one of FAQ pages
+
+= Introduction =
+
+The aim is for common questions (eg from the mailing list http://groups.google.com/group/sqlitepersistentobjects-user) to be recorded here.
+
+= Details =
+
+TBD
