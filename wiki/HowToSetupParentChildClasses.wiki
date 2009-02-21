@@ -1,0 +1,13 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+This page gives you some clues on how to setup your classes if you have a parent/child relationship in your persistent objects.
+
+= Details =
+
+  * The short answer - see the [http://code.google.com/p/sqlitepersistentobjects/source/browse/#svn/trunk/Sample%20Code/SimpleConsoleText code]  :)
+    * The sample code found in the link above contains 2 related objects, not really parent/child, *Post* and *PostComment*.  The PostComment has a link to a Post object.  Saving the PostComment will trigger the related Post object to be saved too - although thats not currently demonstrated in *main.m*.
+
+  * The long answer...
+    * TBD
