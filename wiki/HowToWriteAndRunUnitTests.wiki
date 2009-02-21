@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+There are some unit tests for the project based on the [http://code.google.com/p/google-toolbox-for-mac/wiki/iPhoneUnitTesting Google Toolbox for the Mac]
+
+= Details =
+
+There is an Xcode project in the [http://code.google.com/p/sqlitepersistentobjects/source/browse/#svn/trunk/Tests Tests] directory.
+
+If you open that project and *Build* it, some tests will be run.
+
+If *Build and Go*, it seems more tests will be run...
+
+Need to add some more here...
