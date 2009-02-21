@@ -19,7 +19,7 @@ To Build the app:
   * This should give you an executable called *ConsoleTest*
 
 To Run the app:
-   * just type *ConsoleTest* at the command line - you should get output similar to this:
+   * just type *./ConsoleTest* at the command line - you should get output similar to this:
 {{{
 * Removing DB
 * Creating test objects
