@@ -14,6 +14,7 @@ To Build the app:
   * You need the tool *cmake*, so download/install etc that first.
   * First you need to generate the makefile, do this with this command run in the SimpleConsoleText directory
     * cmake CMakeLists.txt
+      * Alternatively (or just a tip) add the option *-G Xcode* to get an Xcode project built. Beware dont forget to turn off "Load symbols lazily" in Xcode preferences, otherwise the breakpoints do not get found
   * This should create a file called *Makefile* for you.
   * Now run *make* to use this file to build the console app.
   * This should give you an executable called *ConsoleTest*
