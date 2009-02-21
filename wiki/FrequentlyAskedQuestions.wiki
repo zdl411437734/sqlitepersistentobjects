@@ -6,6 +6,8 @@ The aim is for common questions (eg from the [http://groups.google.com/group/sql
 
 = Details =
 
+  * How do I get started
+    * See the [http://code.google.com/p/sqlitepersistentobjects/source/browse/trunk/ReadMe.txt ReadMe.txt] file in the source code.
   * Nested Arrays of Arrays
     * Not currently supported - see this [http://code.google.com/p/sqlitepersistentobjects/issues/detail?id=6 issue] raised relating to it 
   * HowToSetupParentChildClasses
