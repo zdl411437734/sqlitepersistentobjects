@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary A quick guide on handling parent/child relationships
 
 = Introduction =
 
