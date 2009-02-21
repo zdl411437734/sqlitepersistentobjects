@@ -6,4 +6,8 @@ The aim is for common questions (eg from the mailing list http://groups.google.c
 
 = Details =
 
-TBD
+  * Nested Arrays of Arrays
+    * Not currently supported - see this issue raised relating to it http://code.google.com/p/sqlitepersistentobjects/issues/detail?id=6
+  * HowToSetupParentChildClasses
+  * HowToWriteAndRunUnitTests
+  * HowToRunSimpleConsoleTest
