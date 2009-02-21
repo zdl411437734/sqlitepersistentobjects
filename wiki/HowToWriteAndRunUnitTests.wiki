@@ -1,5 +1,4 @@
-#summary One-sentence summary of this page.
-
+#summary Information on writing/running the unit tests
 = Introduction =
 
 There are some unit tests for the project based on the [http://code.google.com/p/google-toolbox-for-mac/wiki/iPhoneUnitTesting Google Toolbox for the Mac]
