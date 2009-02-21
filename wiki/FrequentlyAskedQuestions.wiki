@@ -2,12 +2,12 @@
 
 = Introduction =
 
-The aim is for common questions (eg from the mailing list http://groups.google.com/group/sqlitepersistentobjects-user) to be recorded here.
+The aim is for common questions (eg from the [http://groups.google.com/group/sqlitepersistentobjects-user mailing list]) to be recorded here.
 
 = Details =
 
   * Nested Arrays of Arrays
-    * Not currently supported - see this issue raised relating to it http://code.google.com/p/sqlitepersistentobjects/issues/detail?id=6
+    * Not currently supported - see this [http://code.google.com/p/sqlitepersistentobjects/issues/detail?id=6 issue] raised relating to it 
   * HowToSetupParentChildClasses
   * HowToWriteAndRunUnitTests
   * HowToRunSimpleConsoleTest
