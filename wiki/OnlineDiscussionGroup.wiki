@@ -1,0 +1,8 @@
+#summary Join the online discussion group
+
+= Introduction =
+
+You are welcome to review previous and current discussions as well contribute to new ones in the [http://groups.google.com/group/sqlitepersistentobjects-user sqlitepersistentobjects-user] Google Group.
+
+
+= Details =
