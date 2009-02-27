@@ -54,6 +54,7 @@ static id aggregateMethodWithCriteriaImp(id self, SEL _cmd, id value)
 	
 	
 	NSString *query = [NSString stringWithFormat:@"select %@(%@) from %@ %@",operation, [property stringAsSQLColumnName], [self tableName], value];
+	NSLog(@"Query: %@", query);
 	double avg = [self performSQLAggregation:query];
 	return [NSNumber numberWithDouble:avg];
 }
@@ -67,6 +68,7 @@ static id findByMethodImp(id self, SEL _cmd, id value)
 	
 	NSRange theRange = NSMakeRange(6, [methodBeingCalled length] - 7);
 	NSString *property = [[methodBeingCalled substringWithRange:theRange] stringByLowercasingFirstLetter];
+	NSLog(@"Property: %@", property);
 	NSMutableString *queryCondition = [NSMutableString stringWithFormat:@"WHERE %@ like ", [property stringAsSQLColumnName]];
 	if (![value isKindOfClass:[NSNumber class]])
 		[queryCondition appendString:@"'"];
@@ -1061,68 +1063,6 @@ NSMutableArray *checkedTables;
 	
 	alreadySaving = NO;
 }
-
-/*
- * Reverts the object back to database state. Any changes that have been
- * made since the object was loaded are undone.
- */
--(void)revert
-{
-	if(![self existsInDB])
-	{
-		NSLog(@"Object must exist in database before it can be reverted.");
-		return;
-	}
-	
-	[[self class] unregisterObject:self];
-	SQLitePersistentObject* dbObj = [[self class] findByPK:[self pk]];
-	for(NSString *fieldName in [[self class] propertiesWithEncodedTypes])
-	{
-		if([dbObj valueForKey:fieldName] != [self valueForKey:fieldName])
-			[self setValue:[dbObj valueForKey:fieldName] forKey:fieldName];
-	}
-	[[self class] registerObjectInMemory:self];
-}
-
-/*
- * Reverts the given field name back to its database state. 
- */
--(void)revertField:(NSString *)fieldName
-{
-	if(![self existsInDB])
-	{
-		NSLog(@"Object must exist in database before it can be reverted.");
-		return;
-	}
-	
-	[[self class] unregisterObject:self];
-	SQLitePersistentObject* dbObj = [[self class] findByPK:[self pk]];
-	if([dbObj valueForKey:fieldName] != [self valueForKey:fieldName])
-		[self setValue:[dbObj valueForKey:fieldName] forKey:fieldName];
-	[[self class] registerObjectInMemory:self];
-}
-
-/*
- * Reverts an NSArray of field names back to their database states. 
- */
--(void)revertFields:(NSArray *)fieldNames
-{
-	if(![self existsInDB])
-	{
-		NSLog(@"Object must exist in database before it can be reverted.");
-		return;
-	}
-	
-	[[self class] unregisterObject:self];
-	SQLitePersistentObject* dbObj = [[self class] findByPK:[self pk]];
-	for(NSString *fieldName in fieldNames)
-	{
-		if([dbObj valueForKey:fieldName] != [self valueForKey:fieldName])
-			[self setValue:[dbObj valueForKey:fieldName] forKey:fieldName];
-	}
-	[[self class] registerObjectInMemory:self];
-}
-
 -(BOOL) existsInDB
 {
     // pk must be greater than 0 if its on the db
@@ -1281,6 +1221,7 @@ NSMutableArray* recursionCheck;
 			else
 				return [super resolveClassMethod:theMethod];
 		}
+		// TODO: This is due for some heavy refactoring - too much copy & paste going on...
 		else if ([methodBeingCalled rangeOfString:@"Of"].location != NSNotFound)
 		{
 			NSRange rangeOfOf = [methodBeingCalled rangeOfString:@"Of"];
