@@ -571,11 +571,11 @@ NSMutableArray *checkedTables;
 	sqlite3_finalize(statement);
 	return ret;
 }
-+(NSArray *)pairedArraysForProperties:(NSArray *)theProps
++(NSMutableArray *)pairedArraysForProperties:(NSArray *)theProps
 {
 	return [self pairedArraysForProperties:theProps withCriteria:@""];
 }
-+(NSArray *)pairedArraysForProperties:(NSArray *)theProps withCriteria:(NSString *)criteriaString, ...
++(NSMutableArray *)pairedArraysForProperties:(NSArray *)theProps withCriteria:(NSString *)criteriaString
 {
 	NSMutableArray *ret = [NSMutableArray array];
 	[[self class] tableCheck];
