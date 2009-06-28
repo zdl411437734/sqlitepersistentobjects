@@ -255,25 +255,6 @@ NSMutableArray *checkedTables;
 			[oneItem setPk:pk];
 			[[self class] registerObjectInMemory:oneItem];			
 			
-			//			BOOL foundInMemory = NO;
-			//			id oneItem = [[[self class] alloc] init];
-			//			
-			//			[oneItem setPk:sqlite3_column_int(statement, 0)];
-			//			NSString *mapKey = [oneItem memoryMapKey];
-			//			if ([[objectMap allKeys] containsObject:mapKey])
-			//			{
-			//				SQLitePersistentObject *testObject = [objectMap objectForKey:mapKey];
-			//				if (testObject != nil)
-			//				{
-			//					[oneItem release];
-			//					[ret addObject:[testObject retain]];
-			//					foundInMemory = YES;
-			//				}
-			//			}
-			//			
-			//			if(foundInMemory)
-			//				continue;
-			
 			int i;
 			for (i=0; i <  sqlite3_column_count(statement); i++)
 			{
