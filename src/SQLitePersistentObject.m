@@ -104,6 +104,7 @@ static id findByMethodImp(id self, SEL _cmd, id value)
 - (BOOL)isDirty;
 @end
 @interface SQLitePersistentObject (private_memory)
++ (NSString *)memoryMapKeyForObject:(NSInteger)thePK;
 + (void)registerObjectInMemory:(SQLitePersistentObject *)theObject;
 + (void)unregisterObject:(SQLitePersistentObject *)theObject;
 - (NSString *)memoryMapKey;
@@ -241,26 +242,37 @@ NSMutableArray *checkedTables;
 	{
 		while (sqlite3_step(statement) == SQLITE_ROW)
 		{
-			BOOL foundInMemory = NO;
-			id oneItem = [[[self class] alloc] init];
-			
-			[oneItem setPk:sqlite3_column_int(statement, 0)];
-			NSString *mapKey = [oneItem memoryMapKey];
-			if ([[objectMap allKeys] containsObject:mapKey])
+			int pk = sqlite3_column_int(statement, 0);
+			NSString* memoryMapKey = [[self class] memoryMapKeyForObject:pk];
+			id oneItem = [objectMap objectForKey:memoryMapKey];
+			if (oneItem)
 			{
-				SQLitePersistentObject *testObject = [objectMap objectForKey:mapKey];
-				if (testObject != nil)
-				{
-					[oneItem release];
-					[ret addObject: [testObject retain] ];
-					foundInMemory = YES;
-				}
+				[ret addObject:[oneItem retain]];
+				continue;
 			}
 			
-			if(foundInMemory)
-				continue;
+			oneItem = [[[self class] alloc] init];
+			[oneItem setPk:pk];
+			[[self class] registerObjectInMemory:oneItem];			
 			
-			[[self class] registerObjectInMemory:oneItem];
+			//			BOOL foundInMemory = NO;
+			//			id oneItem = [[[self class] alloc] init];
+			//			
+			//			[oneItem setPk:sqlite3_column_int(statement, 0)];
+			//			NSString *mapKey = [oneItem memoryMapKey];
+			//			if ([[objectMap allKeys] containsObject:mapKey])
+			//			{
+			//				SQLitePersistentObject *testObject = [objectMap objectForKey:mapKey];
+			//				if (testObject != nil)
+			//				{
+			//					[oneItem release];
+			//					[ret addObject:[testObject retain]];
+			//					foundInMemory = YES;
+			//				}
+			//			}
+			//			
+			//			if(foundInMemory)
+			//				continue;
 			
 			int i;
 			for (i=0; i <  sqlite3_column_count(statement); i++)
@@ -571,11 +583,11 @@ NSMutableArray *checkedTables;
 	sqlite3_finalize(statement);
 	return ret;
 }
-+(NSMutableArray *)pairedArraysForProperties:(NSArray *)theProps
++(NSArray *)pairedArraysForProperties:(NSArray *)theProps
 {
 	return [self pairedArraysForProperties:theProps withCriteria:@""];
 }
-+(NSMutableArray *)pairedArraysForProperties:(NSArray *)theProps withCriteria:(NSString *)criteriaString
++(NSArray *)pairedArraysForProperties:(NSArray *)theProps withCriteria:(NSString *)criteriaString, ...
 {
 	NSMutableArray *ret = [NSMutableArray array];
 	[[self class] tableCheck];
